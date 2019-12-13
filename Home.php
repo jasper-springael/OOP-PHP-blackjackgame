@@ -11,49 +11,62 @@
 <body>
     <div class="container">
     <h1>Blackjack</h1>
+    <article class=intro>
+    <h2></h2>
+        <ul><b>How to play:</b>
+            <li>Press start to start a new game. You and the dealer will be dealed 2 starter cards.</li>
+            <li>Press hit for an extra card.</li>
+            <li>Press stand to keep your score and see the dealer's hand.</li>
+            <li>Press yield to be a lil bish and surrender.</li>
+        </ul>
         <div class="row">
             <div class="col-md-6">
-                <fieldset>
-                <legend>Player 1: <?php echo($_SESSION['namePlayer']);?></legend>
+                <legend>Player 1: <?php echo $Player->name;?></legend>
                 <p>Score:</p>
                 <?php 
-                require('game.php');
-                echo ($_SESSION['score']);
+                echo $Player->score;
+                echo'<br>';
+                echo $Player->message;
+                echo'<br>';
                 ?>
                 </br>
                 <p>Turns:</p>
                 <?php
-                echo ($_SESSION['turn']);
+                echo ($Player->turn);
                 ?>
-                    <form action="post">
-                        <button type="button" class="btn btn-dark" name="start">START!</button>
-                        <button type="button" class="btn btn-success" name="hit">Hit</button>
-                        <button type="button" class="btn btn-primary" name="stand">Stand</button>
-                        <button type="button" class="btn btn-secondary" name="yield">Yield</button>
+                <fieldset>
+                    <form method="POST" action="Game.php">
+                        <button type="submit" class="btn btn-dark" name="start">Start/Reset!</button>
+                        <button type="submit" class="btn btn-success" name="hit">Hit</button>
+                        <button type="submit" class="btn btn-primary" name="stand">Stand</button>
+                        <button type="submit" class="btn btn-secondary" name="yield">Yield</button>
                     <?php 
-                    function whatIsHappening() {
-                        echo '<h2>$_GET</h2>';
-                        var_dump($_GET);
-                        echo '<h2>$_POST</h2>';
-                        var_dump($_POST);
-                        echo '<h2>$_COOKIE</h2>';
-                        var_dump($_COOKIE);
-                        echo '<h2>$_SESSION</h2>';
-                        var_dump($_SESSION);
-                    }
-                    whatIsHappening();
+
                     ?>
                     </form>
                 </fieldset>
             </div>
             <div class="col-md-6">
-                <h2>Player 1: <?php echo($_SESSION['nameHouse']);?></h2>
+            <legend>Player 2: <?php echo $House->name;?></legend>
+                <p>Score:</p>
+                <?php 
+                echo $House->score;
+                echo'<br>';
+                echo $House->message;
+                echo'<br>';
+                ?>
+                </br>
+                <p>Turns:</p>
                 <?php
-
+                echo ($House->turn);
                 ?>
             </div>
         </div>
+        <br>
         <div class="row">
+        <h2>
+        <?php echo $Result;?>
+        </h2>
         </div>
     </div>
 </body>
